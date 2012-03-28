@@ -37,7 +37,7 @@ Dual licensed under the MIT or GPL licenses.
 		// userData
 		// non-standard: IE 5+
 		// http://msdn.microsoft.com/en-us/library/ms531424(v=vs.85).aspx
-		var div = document.createElement( "div" ),
+		var div = /*@type IEUserData */ document.createElement( "div" ),
 			attrKey = "localStorage";
 		div.style.display = "none";
 		document.getElementsByTagName( "head" )[ 0 ].appendChild( div );
@@ -51,7 +51,7 @@ Dual licensed under the MIT or GPL licenses.
 					key = cleanKey(key );
 
 					if( !div.getAttribute( key ) ){
-						this.length++;
+						localStorage.length++;
 					}
 					div.setAttribute( key , value );
 
@@ -69,20 +69,20 @@ Dual licensed under the MIT or GPL licenses.
 					div.removeAttribute( key );
 
 					div.save( attrKey );
-					this.length--;
-					if( this.length < 0){
-						this.length=0;
+					localStorage.length--;
+					if( localStorage.length < 0){
+						localStorage.length=0;
 					}
 				},
 
 				"clear":function(){
 					div.load( attrKey );
-					var i = 0;
+					var i = 0, attr;
 					while (( attr = div.XMLDocument.documentElement.attributes[ i++ ] )) {
 						div.removeAttribute( attr.name );
 					}
 					div.save( attrKey );
-					this.length=0;
+					localStorage.length=0;
 				},
 
 				"key":function( key ){
@@ -96,7 +96,7 @@ Dual licensed under the MIT or GPL licenses.
 			// http://www.w3.org/TR/REC-xml/#NT-Name
 			// simplified to assume the starting character is valid
 			cleanKey = function( key ){
-				return key.replace( /[^\-._0-9A-Za-z\xb7\xc0-\xd6\xd8-\xf6\xf8-\u037d\u37f-\u1fff\u200c-\u200d\u203f\u2040\u2070-\u218f]/g, "-" );
+				return key.replace( /[^\-._0-9A-Za-z\xb7\xc0-\xd6\xd8-\xf6\xf8-\u037d\u037f-\u1fff\u200c-\u200d\u203f\u2040\u2070-\u218f]/g, "-" );
 			};
 
 
