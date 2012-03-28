@@ -1,3 +1,6 @@
+/**
+ * @license local-storage-js Copyright (c) 2011 Wojo Design | License: MIT/GPL
+ */
 /*jshint sub:true */
 // kate: tabs
 /*
