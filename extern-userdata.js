@@ -1,3 +1,4 @@
+/*jshint expr:true */
 /**
  * Enables the object to persist data in user data.
  * @see http://msdn.microsoft.com/en-us/library/ms531424(v=vs.85).aspx
